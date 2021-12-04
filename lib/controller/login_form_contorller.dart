@@ -35,7 +35,10 @@ class LoginFormController extends GetxController {
   Future<void> authUser(String id, String pass) async {
     isLoading.value = true;
 
-    Map<String, dynamic> body = {"userId": id, "userPass": pass};
+    Map<String, dynamic> body = {
+      "userId": id,
+      "userPass": pass,
+    };
     var dataToSend = json.encode(body);
 
     var response = await http.post(

@@ -1,7 +1,6 @@
 import 'package:fena_activity/constrants.dart';
 // ignore: unused_import
 import 'package:fena_activity/views/login.dart';
-import 'package:fena_activity/views/site_details.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -26,8 +25,8 @@ class MyApp extends StatelessWidget {
       // ignore: prefer_const_constructors
       home: Scaffold(
         // ignore: prefer_const_constructors
-        body: SiteDetailsPage(),
-        // body: LoginPage(),
+        // body: SiteDetailsPage(),
+        body: LoginPage(),
       ),
     );
   }

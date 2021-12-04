@@ -1,12 +1,13 @@
 // ignore_for_file: prefer_const_constructors
 
-import 'package:fena_activity/components/founded_input_container.dart';
 import 'package:fena_activity/components/rounded_button.dart';
+import 'package:fena_activity/components/rounded_input_container.dart';
 // ignore: unused_import
 import 'package:fena_activity/components/text_input_field.dart';
 import 'package:fena_activity/constrants.dart';
-import 'package:fena_activity/controller/dropdown_items_controller.dart';
+// import 'package:fena_activity/controller/dropdown_items_controller.dart';
 import 'package:fena_activity/controller/login_form_contorller.dart';
+import 'package:fena_activity/views/site-details-components/dropdown_form_field.dart';
 import 'package:flutter/material.dart';
 // import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -20,24 +21,25 @@ class SiteDetailsPage extends StatelessWidget {
   TextEditingController siteDistict = TextEditingController();
   TextEditingController siteVillage = TextEditingController();
   TextEditingController siteLandMark = TextEditingController();
-
-  DropdownContorller stateDropdownController = Get.put(DropdownContorller());
+  TextEditingController wallSINo = TextEditingController();
 
   LoginFormController loginFormController = Get.put(LoginFormController());
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     // ignore: sized_box_for_whitespace
-    return SingleChildScrollView(
-      // ignore: sized_box_for_whitespace
-      child: Container(
-        width: double.infinity,
-        height: size.height,
-        child: Center(
+    return Container(
+      width: double.infinity,
+      height: size.height,
+      child: Center(
+        child: SingleChildScrollView(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             // ignore: prefer_const_literals_to_create_immutables
             children: <Widget>[
+              SizedBox(
+                height: size.height * 0.05,
+              ),
               Text(
                 "Site Details",
                 style: TextStyle(
@@ -91,39 +93,7 @@ class SiteDetailsPage extends StatelessWidget {
                     SizedBox(
                       height: size.height * 0.02,
                     ),
-                    TextFieldContainer(
-                      child: Obx(
-                        () => DropdownButtonFormField(
-                          value: stateDropdownController.firstItemInList.value,
-                          icon: Icon(
-                            Icons.arrow_downward,
-                            color: kPrimaryColor,
-                          ),
-                          iconSize: 25,
-                          elevation: 16,
-                          decoration: InputDecoration(
-                            contentPadding: EdgeInsets.all(10),
-                            border: InputBorder.none,
-                          ),
-                          style: const TextStyle(
-                            color: Colors.black,
-                            fontSize: 16,
-
-                            // fontWeight: FontWeight.bold,
-                          ),
-                          onChanged: (newValue) {
-                            // siteState = newValue.toString();
-                            stateDropdownController
-                                .onChangeValue(newValue.toString());
-                          },
-                          dropdownColor:
-                              Theme.of(context).colorScheme.onBackground,
-                          focusColor: Colors.yellow,
-                          // ignore: invalid_use_of_protected_member
-                          items: stateDropdownController.setItemList(stateList),
-                        ),
-                      ),
-                    ),
+                    StateDropdownField(),
                     SizedBox(
                       height: size.height * 0.02,
                     ),
@@ -166,6 +136,27 @@ class SiteDetailsPage extends StatelessWidget {
                     SizedBox(
                       height: size.height * 0.02,
                     ),
+                    SiteDesignDropdownField(),
+                    SizedBox(
+                      height: size.height * 0.02,
+                    ),
+                    TextFieldContainer(
+                      child: TextInputField(
+                        icon: Icons.confirmation_number,
+                        hintText: "Enter Wall SI no.",
+                        lableText: "Wall SI No.",
+                        onChange: (String val) {},
+                        errorText: "Please Enter Wall SI no.",
+                        controllerVar: wallSINo,
+                      ),
+                    ),
+                    SizedBox(
+                      height: size.height * 0.02,
+                    ),
+                    SiteSizeDropdownField(),
+                    SizedBox(
+                      height: size.height * 0.02,
+                    ),
                     Obx(
                       () => loginFormController.isLoading.value == true
                           ? CircularProgressIndicator()
@@ -178,6 +169,9 @@ class SiteDetailsPage extends StatelessWidget {
                     ),
                   ],
                 ),
+              ),
+              SizedBox(
+                height: size.height * 0.04,
               ),
             ],
           ),

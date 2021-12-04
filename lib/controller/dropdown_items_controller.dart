@@ -45,12 +45,10 @@ class StateDropdownController extends GetxController {
 
   var stateList = <DropdownMenuItem<String>>[].obs;
 
-  var stateFirstItem = "".obs;
+  var selectedState = "".obs;
 
   @override
   void onInit() {
-    // ignore: todo
-    // TODO: implement onInit
     super.onInit();
 
     stateList.value = state.map<DropdownMenuItem<String>>((String value) {
@@ -59,30 +57,78 @@ class StateDropdownController extends GetxController {
         child: Text(value),
       );
     }).toList();
-    stateFirstItem.value = state[0];
+    selectedState.value = state[0];
   }
 
   onChangeValue(String val) {
-    stateFirstItem.value = val;
+    selectedState.value = val;
   }
 }
 
-class DropdownContorller extends GetxController {
-  // var itemList = <DropdownMenuItem<String>>[].obs;
-  var firstItemInList = "Select State".obs;
+class SiteDesignDropdownController extends GetxController {
+  List<String> siteDesignList = ["Select Design", "FENA", "NIP", "IMPACT"];
+  var designList = <DropdownMenuItem<String>>[].obs;
+  var selectedDesign = "".obs;
 
-  setItemList(List<String> items) {
-    var itemList = items.map<DropdownMenuItem<String>>((String value) {
+  @override
+  void onInit() {
+    super.onInit();
+
+    designList.value =
+        siteDesignList.map<DropdownMenuItem<String>>((String value) {
       return DropdownMenuItem<String>(
         value: value,
         child: Text(value),
       );
     }).toList();
-    firstItemInList.value = items[0];
-    return itemList;
+    selectedDesign.value = siteDesignList[0];
   }
 
   onChangeValue(String val) {
-    firstItemInList.value = val;
+    selectedDesign.value = val;
   }
 }
+
+class SiteSizeDropdownController extends GetxController {
+  List<String> siteSizeList = ["Select Size", "10 x 5 ft.", "8 x 4 ft."];
+  var sizeList = <DropdownMenuItem<String>>[].obs;
+  var selectedSize = "".obs;
+
+  @override
+  void onInit() {
+    super.onInit();
+
+    sizeList.value = siteSizeList.map<DropdownMenuItem<String>>((String value) {
+      return DropdownMenuItem<String>(
+        value: value,
+        child: Text(value),
+      );
+    }).toList();
+    selectedSize.value = siteSizeList[0];
+  }
+
+  onChangeValue(String val) {
+    selectedSize.value = val;
+  }
+}
+
+
+// class DropdownContorller extends GetxController {
+//   // var itemList = <DropdownMenuItem<String>>[].obs;
+//   var firstItemInList = "Select State".obs;
+
+//   setItemList(List<String> items) {
+//     var itemList = items.map<DropdownMenuItem<String>>((String value) {
+//       return DropdownMenuItem<String>(
+//         value: value,
+//         child: Text(value),
+//       );
+//     }).toList();
+//     firstItemInList.value = items[0];
+//     return itemList;
+//   }
+
+//   onChangeValue(String val) {
+//     firstItemInList.value = val;
+//   }
+// }
